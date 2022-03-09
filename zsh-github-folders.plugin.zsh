@@ -1,6 +1,6 @@
-function go_to_repo(){
+function go_to_repo() {
     name=$1
-    repo_path=$(find ~/src -type d -name "**${name}**")
+    repo_path=$(find ~/src -mindepth 3 -maxdepth 3 -type d -iname "**${name}**")
     cd $repo_path
 }
 
@@ -16,7 +16,7 @@ function clone_github_repo() {
     mkdir -p $HOME/src/github/$ownername
     git clone $url $HOME/src/github/$ownername/$repo
 
-    ghcd $repo
+    go_to_repo $repo
 }
 
 alias ghclone="clone_github_repo"
